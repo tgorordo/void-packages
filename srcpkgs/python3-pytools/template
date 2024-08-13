@@ -1,17 +1,25 @@
 # Template file for 'python3-pytools'
 pkgname=python3-pytools
-version=2024.1.2
+version=2024.1.12
 revision=1
-build_style=python3-module
-hostmakedepends="python3-setuptools"
+build_style=python3-pep517
+# Ignored checks require unpackaged siphash24 package
+make_check_args="
+ --deselect pytools/test/test_persistent_dict.py::test_attrs_hashing
+ --deselect pytools/test/test_persistent_dict.py::test_class_hashing
+ --deselect pytools/test/test_persistent_dict.py::test_datetime_hashing
+ --deselect pytools/test/test_persistent_dict.py::test_dataclass_hashing
+ --deselect pytools/test/test_persistent_dict.py::test_hash_function
+"
+hostmakedepends="python3-setuptools python3-wheel"
 depends="python3-platformdirs python3-numpy python3-typing_extensions"
-checkdepends="python3-pytest $depends"
+checkdepends="python3-pytest-xdist $depends"
 short_desc="Python utilities from Andreas Kloeckner"
 maintainer="Andrew J. Hesford <ajh@sideband.org>"
 license="X11"
 homepage="https://pypi.org/project/pytools"
 distfiles="${PYPI_SITE}/p/pytools/pytools-${version}.tar.gz"
-checksum=081871e451505c4b986ebafa68aeeabfdc7beb3faa1baa50f726aebe21e1d057
+checksum=c603dfaf6f58f72fdd262259194cdf9df6c0a37d1d5a3e3a73e1f5af6a8f37d2
 
 post_install() {
 	vlicense LICENSE

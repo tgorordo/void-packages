@@ -1,18 +1,22 @@
 # Template file for 'gitoxide'
 pkgname=gitoxide
-version=0.35.0
+version=0.37.0
 revision=1
 build_style=cargo
 build_helper=qemu
-hostmakedepends="pkg-config cmake"
-makedepends="zlib-devel openssl-devel sqlite-devel"
+configure_args="
+ --no-default-features
+ --features max-control,gix-features/zlib-stock,gitoxide-core-blocking-client,http-client-curl
+"
+hostmakedepends="pkg-config"
+makedepends="zlib-devel sqlite-devel libcurl-devel"
 short_desc="Idiomatic, lean, fast and safe pure Rust implementation of Git"
 maintainer="Orphaned <orphan@voidlinux.org>"
 license="MIT, Apache-2.0"
 homepage="https://github.com/Byron/gitoxide"
 changelog="https://github.com/Byron/gitoxide/raw/main/CHANGELOG.md"
 distfiles="https://github.com/Byron/gitoxide/archive/refs/tags/v${version}.tar.gz"
-checksum=4f074b30830ff37da8ae9de11b0441addea9f1552f0fcac1fa6fb56435d5bbea
+checksum=1bdc30bafdd3605d6e278aa5562f772a9732bb07ced9321ea31893b28f950c0a
 
 post_install() {
 	vlicense LICENSE-APACHE
