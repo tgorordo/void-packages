@@ -1,7 +1,7 @@
 # Template file for 'libarchive'
 pkgname=libarchive
 version=3.7.9
-revision=1
+revision=2
 bootstrap=yes
 build_style=gnu-configure
 configure_args="$(vopt_enable acl) $(vopt_enable acl xattr)
@@ -57,7 +57,7 @@ bsdtar_package() {
 
 bsdunzip_package() {
 	reverts="20160115_1 20160115_2"
-	build_style="meta"
+	metapackage=yes
 	short_desc="BSD utilities using libarchive (transitional dummy package)"
 	depends="bsdtar>=${version}_${revision}"
 }

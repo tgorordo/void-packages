@@ -1,7 +1,7 @@
 # Template file for 'tesseract-ocr'
 pkgname=tesseract-ocr
 version=5.5.0
-revision=1
+revision=2
 _tessdataver=4.1.0
 create_wrksrc=yes
 build_style=gnu-configure
@@ -106,7 +106,7 @@ tesseract-ocr-devel_package() {
 }
 tesseract-ocr-basic_package() {
 	local lang
-	build_style=meta
+	metapackage=yes
 	depends="${sourcepkg}>=${version}_${revision}"
 	conflicts="tesseract-ocr-all>=0"
 	short_desc+=" - basic languages data"
@@ -117,7 +117,7 @@ tesseract-ocr-basic_package() {
 }
 tesseract-ocr-all_package() {
 	local lang
-	build_style=meta
+	metapackage=yes
 	depends="${sourcepkg}>=${version}_${revision}"
 	conflicts="tesseract-ocr-basic>=0"
 	short_desc+=" - all languages data"

@@ -1,8 +1,8 @@
 # Template file for 'cross-vpkg-dummy'
 pkgname=cross-vpkg-dummy
-version=0.41
+version=0.42
 revision=1
-build_style=meta
+metapackage=yes
 depends="base-files>=0.126"
 short_desc="Dummy meta-pkg for cross building packages with xbps-src"
 maintainer="Orphaned <orphan@voidlinux.org>"
@@ -73,8 +73,8 @@ shlib_provides="
 repository=bootstrap
 
 if [ "$XBPS_TARGET_LIBC" = "musl" ]; then
-	provides+=" musl-9999_1 musl-devel-9999_1"
-	conflicts+=" musl>=0"
+	provides+=" musl-9999_1 musl-devel-9999_1 musl1.1-9999_1 musl1.1-devel-9999_1"
+	conflicts+=" musl>=0 musl1.1>=0"
 	shlib_provides+=" libc.so"
 else
 	provides+=" glibc-9999_1 glibc-devel-9999_1"
